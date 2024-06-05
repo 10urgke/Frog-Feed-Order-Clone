@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public int rows = 4;
-    public int columns = 4;
-    public float cellSize = 1.0f;
-
-    public GameObject cellBluePrefab;
-    public GameObject cellGreenPrefab;
-    public GameObject cellPurplePrefab;
-    public GameObject cellRedPrefab;
-    public GameObject cellYellowPrefab;
+    public GameObject blueCellPrefab;
+    public GameObject greenCellPrefab;
+    public GameObject purpleCellPrefab;
+    public GameObject redCellPrefab;
+    public GameObject yellowCellPrefab;
+    public int gridSize = 5;
+    private GameObject[,] grid;
 
     void Start()
     {
@@ -19,27 +17,27 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
-        for (int i = 0; i < rows; i++)
+        grid = new GameObject[gridSize, gridSize];
+
+        for (int x = 0; x < gridSize; x++)
         {
-            for (int j = 0; j < columns; j++)
+            for (int y = 0; y < gridSize; y++)
             {
-                Vector3 cellPosition = new Vector3(i * cellSize, 0, j * cellSize);
-                GameObject cellPrefab = GetCellPrefab(i, j);
-                Instantiate(cellPrefab, cellPosition, Quaternion.identity, transform);
+                GameObject cellPrefab = GetRandomCellPrefab();
+                GameObject cell = Instantiate(cellPrefab, new Vector3(x, 0, y), Quaternion.identity);
+                grid[x, y] = cell;
             }
         }
     }
 
-    GameObject GetCellPrefab(int row, int column)
+    GameObject GetRandomCellPrefab()
     {
-        if ((row + column) % 5 == 0)
-            return cellBluePrefab;
-        if ((row + column) % 5 == 1)
-            return cellGreenPrefab;
-        if ((row + column) % 5 == 2)
-            return cellPurplePrefab;
-        if ((row + column) % 5 == 3)
-            return cellRedPrefab;
-        return cellYellowPrefab;
+        GameObject[] cellPrefabs = new GameObject[] { blueCellPrefab, greenCellPrefab, purpleCellPrefab, redCellPrefab, yellowCellPrefab };
+        return cellPrefabs[Random.Range(0, cellPrefabs.Length)];
+    }
+
+    public GameObject[,] GetGrid()
+    {
+        return grid;
     }
 }

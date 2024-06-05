@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 311049512549076805}
+  - component: {fileID: 7665587733499111647}
+  - component: {fileID: 313479293595228331}
   m_Layer: 0
   m_Name: GrapeGreen
   m_TagString: Untagged
@@ -32,6 +34,40 @@ Transform:
   - {fileID: 5519418718989398706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7665587733499111647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755696766857855477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60a1f60c6b3e1b4d948f01fef891c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.2627451, g: 0.8980393, b: 0.3921569, a: 0}
+--- !u!65 &313479293595228331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755696766857855477}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.65408933, y: 0.4602109, z: 0.5524395}
+  m_Center: {x: -0.011283815, y: 0.050401703, z: -0.05807802}
 --- !u!1001 &5409477815256765785
 PrefabInstance:
   m_ObjectHideFlags: 0
