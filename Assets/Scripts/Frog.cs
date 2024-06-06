@@ -13,13 +13,23 @@ public class Frog : MonoBehaviour
     private GameObject tongueInstance;
     private List<GameObject> collectedBerries = new List<GameObject>();
 
-    void OnMouseDown()
+    void Update()
     {
-        if (!isInteracted)
+        if (!isInteracted && Input.GetMouseButtonDown(1))
         {
-            GameManager.Instance.OnFrogInteracted(this);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform == transform)
+                {
+                    GameManager.Instance.OnFrogInteracted(this);
+                }
+            }
         }
     }
+
 
     public void ExtendTongue(Vector3 targetPosition)
     {
