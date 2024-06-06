@@ -25,24 +25,42 @@ public class LevelManager : MonoBehaviour
     void PlaceFrogsAndGrapes()
     {
         GameObject[,] grid = gridManager.GetGrid();
+        int gridSizeX = gridManager.gridSizeX;
+        int gridSizeY = gridManager.gridSizeY;
 
-        for (int x = 0; x < gridManager.gridSize; x++)
+        int[,] frogPositions = new int[,] {
+            {0, 5}, {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5}
+        };
+
+        PlaceObjects(frogPositions, GetFrogPrefab, gridSizeX, gridSizeY);
+
+        int[,] grapePositions = new int[gridSizeX * (gridSizeY - 1), 2];
+        for (int x = 0; x < gridSizeX; x++)
         {
-            for (int y = 0; y < gridManager.gridSize; y++)
+            for (int y = 0; y < gridSizeY - 1; y++)
+            {
+                grapePositions[x * (gridSizeY - 1) + y, 0] = x;
+                grapePositions[x * (gridSizeY - 1) + y, 1] = y;
+            }
+        }
+
+        PlaceObjects(grapePositions, GetGrapePrefab, gridSizeX, gridSizeY);
+    }
+
+    void PlaceObjects(int[,] positions, System.Func<string, GameObject> getPrefab, int gridSizeX, int gridSizeY)
+    {
+        GameObject[,] grid = gridManager.GetGrid();
+        for (int i = 0; i < positions.GetLength(0); i++)
+        {
+            int x = positions[i, 0];
+            int y = positions[i, 1];
+            if (x < gridSizeX && y < gridSizeY)
             {
                 GameObject cell = grid[x, y];
-                string cellName = cell.name;
-
-                if (Random.value > 0.7f)
+                GameObject prefab = getPrefab(cell.name);
+                if (prefab != null)
                 {
-                    if (Random.value > 0.5f)
-                    {
-                        PlaceObjectOnCell(cell, GetFrogPrefab(cellName));
-                    }
-                    else
-                    {
-                        PlaceObjectOnCell(cell, GetGrapePrefab(cellName));
-                    }
+                    Instantiate(prefab, cell.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
                 }
             }
         }
@@ -66,13 +84,5 @@ public class LevelManager : MonoBehaviour
         if (cellName.Contains("Red")) return grapeRedPrefab;
         if (cellName.Contains("Yellow")) return grapeYellowPrefab;
         return null;
-    }
-
-    void PlaceObjectOnCell(GameObject cell, GameObject prefab)
-    {
-        if (prefab != null)
-        {
-            Instantiate(prefab, cell.transform.position, Quaternion.identity);
-        }
     }
 }

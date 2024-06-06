@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7409967347325276975}
   m_Layer: 0
   m_Name: GrapeYellow
-  m_TagString: Untagged
+  m_TagString: YellowBerry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

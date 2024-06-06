@@ -172,7 +172,8 @@ MonoBehaviour:
   purpleCellPrefab: {fileID: 5617968658027563740, guid: 99011b97f36fa384e9644e3eb1e2b4cc, type: 3}
   redCellPrefab: {fileID: 9158599324372243966, guid: 5bcb42b4b9069a54196f65868f288af5, type: 3}
   yellowCellPrefab: {fileID: 9165845238356805772, guid: 68d18b2c2a3ed67458de63bebe6f7de4, type: 3}
-  gridSize: 6
+  gridSizeX: 6
+  gridSizeY: 6
 --- !u!1 &451735528
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +274,7 @@ Transform:
   m_GameObject: {fileID: 451735528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -487,7 +488,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:

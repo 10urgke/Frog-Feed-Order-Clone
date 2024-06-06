@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour
 
     private Vector3 DetermineTargetPosition(Frog frog)
     {
-        // Dilin hedef pozisyonunu belirlemek için basit bir örnek
-        return frog.transform.position + new Vector3(0, 0, 5f); // Yönünü ayarlamak için
+        return frog.transform.position + new Vector3(0, 0, -6f); // Yönünü ayarlamak için
     }
 }
-

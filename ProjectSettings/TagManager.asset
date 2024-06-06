@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Berry
+  - BlueBerry
+  - GreenBerry
+  - PurpleBerry
+  - RedBerry
+  - YellowBerry
   layers:
   - Default
   - TransparentFX
