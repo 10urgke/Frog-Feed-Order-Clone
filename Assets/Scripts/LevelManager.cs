@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -25,64 +27,52 @@ public class LevelManager : MonoBehaviour
     void PlaceFrogsAndGrapes()
     {
         GameObject[,] grid = gridManager.GetGrid();
-        int gridSizeX = gridManager.gridSizeX;
-        int gridSizeY = gridManager.gridSizeY;
 
-        int[,] frogPositions = new int[,] {
-            {0, 5}, {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5}
-        };
-
-        PlaceObjects(frogPositions, GetFrogPrefab, gridSizeX, gridSizeY);
-
-        int[,] grapePositions = new int[gridSizeX * (gridSizeY - 1), 2];
-        for (int x = 0; x < gridSizeX; x++)
+        for (int i = 0; i < 6; i++)
         {
-            for (int y = 0; y < gridSizeY - 1; y++)
-            {
-                grapePositions[x * (gridSizeY - 1) + y, 0] = x;
-                grapePositions[x * (gridSizeY - 1) + y, 1] = y;
-            }
+            PlaceObjectOnCell(grid[i, 5], GetFrogPrefabByIndex(i));
         }
 
-        PlaceObjects(grapePositions, GetGrapePrefab, gridSizeX, gridSizeY);
-    }
-
-    void PlaceObjects(int[,] positions, System.Func<string, GameObject> getPrefab, int gridSizeX, int gridSizeY)
-    {
-        GameObject[,] grid = gridManager.GetGrid();
-        for (int i = 0; i < positions.GetLength(0); i++)
+        for (int i = 0; i < 6; i++)
         {
-            int x = positions[i, 0];
-            int y = positions[i, 1];
-            if (x < gridSizeX && y < gridSizeY)
+            for (int j = 0; j < 6; j++)
             {
-                GameObject cell = grid[x, y];
-                GameObject prefab = getPrefab(cell.name);
-                if (prefab != null)
-                {
-                    Instantiate(prefab, cell.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
-                }
+                PlaceObjectOnCell(grid[i, j], GetGrapePrefabByIndex(i));
             }
         }
     }
 
-    GameObject GetFrogPrefab(string cellName)
+    GameObject GetFrogPrefabByIndex(int index)
     {
-        if (cellName.Contains("Blue")) return frogBluePrefab;
-        if (cellName.Contains("Green")) return frogGreenPrefab;
-        if (cellName.Contains("Purple")) return frogPurplePrefab;
-        if (cellName.Contains("Red")) return frogRedPrefab;
-        if (cellName.Contains("Yellow")) return frogYellowPrefab;
-        return null;
+        switch (index)
+        {
+            case 0: return frogBluePrefab;
+            case 1: return frogGreenPrefab;
+            case 2: return frogPurplePrefab;
+            case 3: return frogRedPrefab;
+            case 4: return frogYellowPrefab;
+            default: return frogBluePrefab;
+        }
     }
 
-    GameObject GetGrapePrefab(string cellName)
+    GameObject GetGrapePrefabByIndex(int index)
     {
-        if (cellName.Contains("Blue")) return grapeBluePrefab;
-        if (cellName.Contains("Green")) return grapeGreenPrefab;
-        if (cellName.Contains("Purple")) return grapePurplePrefab;
-        if (cellName.Contains("Red")) return grapeRedPrefab;
-        if (cellName.Contains("Yellow")) return grapeYellowPrefab;
-        return null;
+        switch (index)
+        {
+            case 0: return grapeBluePrefab;
+            case 1: return grapeGreenPrefab;
+            case 2: return grapePurplePrefab;
+            case 3: return grapeRedPrefab;
+            case 4: return grapeYellowPrefab;
+            default: return grapeBluePrefab;
+        }
+    }
+
+    void PlaceObjectOnCell(GameObject cell, GameObject prefab)
+    {
+        if (prefab != null)
+        {
+            Instantiate(prefab, cell.transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
+        }
     }
 }

@@ -10,6 +10,11 @@ TagManager:
   - PurpleBerry
   - RedBerry
   - YellowBerry
+  - BlueFrog
+  - GreenFrog
+  - PurpleFrog
+  - RedFrog
+  - YellowFrog
   layers:
   - Default
   - TransparentFX

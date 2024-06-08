@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8920404535710693843}
   m_Layer: 0
   m_Name: FrogBlue
-  m_TagString: Untagged
+  m_TagString: BlueFrog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
